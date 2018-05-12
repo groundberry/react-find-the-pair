@@ -1,0 +1,7 @@
+.Grid {
+  justify-content: center;
+  font-size: 3em;
+  display: grid;
+  max-width: 50%;
+  margin: 0 auto;
+}
