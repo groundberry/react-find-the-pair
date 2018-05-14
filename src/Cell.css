@@ -1,0 +1,26 @@
+.Cell {
+  border-radius: 3px;
+  font-size: 3em;
+}
+
+.Cell--content {
+  border-style: solid;
+  border-color: #c00;
+  border-width: medium;
+}
+
+.Cell--button {
+  background-color: #c00;
+  border-radius: 3px;
+  border-color: #fff;
+  color: #fff;
+  cursor: pointer;
+  height: 70px;
+  width: 70px;
+}
+
+.Cell--button:hover {
+  background-color: #e60000;
+  border-radius: 3px;
+  cursor: pointer;
+}

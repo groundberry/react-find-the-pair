@@ -2,7 +2,7 @@ import {
   getWidth,
   getHeight,
 } from './config';
-import shuffle from './array';
+import { shuffle } from './array';
 
 const emojis = ['🐶', '🐱', '🐷', '🐮', '🐣', '🐭', '🐹', '🐰', '🐸', '🦋', '🦀', '🐡', '🐬', '🐙', '🐻', '🦊', '🐯', '🦁', '🐨', '🐒'];
 
@@ -29,4 +29,19 @@ export function getGrid(level) {
   }
 
   return grid;
+}
+
+export function getPressedGrid(level) {
+  const height = getHeight(level);
+  const width = getWidth(level);
+  const pressedGrid = [];
+
+  for (let row = 0; row < height; row += 1) {
+    const currentRow = [];
+    for (let col = 0; col < width; col += 1) {
+      currentRow.push(false);
+    }
+    pressedGrid.push(currentRow);
+  }
+  return pressedGrid;
 }

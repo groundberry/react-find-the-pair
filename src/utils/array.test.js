@@ -1,4 +1,4 @@
-import shuffle from './array';
+import { shuffle } from './array';
 
 describe('array', () => {
   describe('shuffle', () => {

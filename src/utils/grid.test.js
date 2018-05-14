@@ -1,5 +1,6 @@
 import {
   getGrid,
+  getPressedGrid,
   getPairs,
 } from './grid';
 
@@ -8,6 +9,17 @@ describe('grid', () => {
     it('returns an array with 2 nested arrays', () => {
       const level = 1;
       expect(getGrid(level)).toHaveLength(2);
+    });
+  });
+
+  describe('getPressedGrid', () => {
+    it('returns an array with 2 nested arrays', () => {
+      const level = 1;
+      const result = [
+        [false, false],
+        [false, false],
+      ];
+      expect(getPressedGrid(level)).toEqual(result);
     });
   });
 

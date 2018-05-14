@@ -1,4 +1,4 @@
-export default function shuffle(array) {
+export function shuffle(array) {
   let counter = array.length;
   const newArray = [].concat(array);
 
@@ -14,3 +14,5 @@ export default function shuffle(array) {
 
   return newArray;
 }
+
+export const cloneGrid = grid => grid.map(row => row.slice());
