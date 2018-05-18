@@ -16,3 +16,5 @@ export function shuffle(array) {
 }
 
 export const cloneGrid = grid => grid.map(row => row.slice());
+
+export const cloneArray = array => array.map(element => element);
