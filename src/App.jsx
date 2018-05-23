@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-state */
+
 import React, { Component } from 'react';
 import {
   getGrid,
@@ -7,14 +9,19 @@ import {
   cloneGrid,
   cloneArray,
 } from './utils/array';
+import {
+  getWidth,
+  getHeight,
+} from './utils/config';
 import Grid from './Grid';
+import Header from './Header';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super();
 
-    const level = 1;
+    const level = 2;
     const grid = getGrid(level);
     const pressedGrid = getPressedGrid(level);
 
@@ -24,6 +31,7 @@ class App extends Component {
       pressedGrid,
       discoveredCells: [],
       discoveredCellsCoordinates: [],
+      winGame: false,
     };
 
     this.handleClickUpdatePressedGrid = this.handleClickUpdatePressedGrid.bind(this);
@@ -31,11 +39,17 @@ class App extends Component {
   }
 
   handleClickUpdatePressedGrid([row, col]) {
+    const { level } = this.state;
+    const height = getHeight(level);
+    const width = getWidth(level);
+
     this.setState((prevState) => {
       const grid = cloneGrid(prevState.grid);
       const newUpdatePressedGrid = cloneGrid(prevState.pressedGrid);
-      let newDiscoveredCells = cloneArray(prevState.discoveredCells);
+      const newDiscoveredCells = cloneArray(prevState.discoveredCells);
       const newDiscoveredCellsCoordinates = cloneArray(prevState.discoveredCellsCoordinates);
+      const numberOfCells = height * width;
+      let isWinGame = false;
 
       newUpdatePressedGrid[row][col] = true;
       newDiscoveredCells.push(grid[row][col]);
@@ -48,14 +62,18 @@ class App extends Component {
           setTimeout(() => {
             this.removeWrongPairs();
           }, 1000);
-          newDiscoveredCells = [];
         }
+      }
+
+      if (newDiscoveredCells.length === numberOfCells) {
+        isWinGame = true;
       }
 
       return {
         pressedGrid: newUpdatePressedGrid,
         discoveredCells: newDiscoveredCells,
         discoveredCellsCoordinates: newDiscoveredCellsCoordinates,
+        winGame: isWinGame,
       };
     });
   }
@@ -86,13 +104,21 @@ class App extends Component {
   }
 
   render() {
-    const { level, grid, pressedGrid } = this.state;
+    const {
+      level,
+      grid,
+      pressedGrid,
+      winGame,
+    } = this.state;
 
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Find the pair</h1>
         </header>
+        <Header
+          winGame={winGame}
+        />
         <Grid
           level={level}
           grid={grid}
