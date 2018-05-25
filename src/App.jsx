@@ -1,18 +1,9 @@
 /* eslint-disable react/no-unused-state */
 
 import React, { Component } from 'react';
-import {
-  getGrid,
-  getPressedGrid,
-} from './utils/grid';
-import {
-  cloneGrid,
-  cloneArray,
-} from './utils/array';
-import {
-  getWidth,
-  getHeight,
-} from './utils/config';
+import { getGrid, getPressedGrid } from './utils/grid';
+import { cloneGrid, cloneArray } from './utils/array';
+import { getWidth, getHeight } from './utils/config';
 import Grid from './Grid';
 import Header from './Header';
 import Timer from './Timer';
@@ -67,9 +58,11 @@ class App extends Component {
       }
 
       for (let i = newDiscoveredCells.length - 1; i >= 0; i -= 2) {
-        if (newDiscoveredCells.length > 1 &&
-          (newDiscoveredCells.length % 2) === 0 &&
-          (newDiscoveredCells[i] !== newDiscoveredCells[i - 1])) {
+        if (
+          newDiscoveredCells.length > 1 &&
+          newDiscoveredCells.length % 2 === 0 &&
+          newDiscoveredCells[i] !== newDiscoveredCells[i - 1]
+        ) {
           setTimeout(() => {
             this.removeWrongPairs();
           }, 1000);
@@ -100,9 +93,9 @@ class App extends Component {
       const newDiscoveredCells = cloneArray(prevState.discoveredCells);
       const newDiscoveredCellsCoordinates = cloneArray(prevState.discoveredCellsCoordinates);
       const secondCellIndex =
-      newDiscoveredCellsCoordinates[newDiscoveredCellsCoordinates.length - 1];
+        newDiscoveredCellsCoordinates[newDiscoveredCellsCoordinates.length - 1];
       const firstCellIndex =
-      newDiscoveredCellsCoordinates[newDiscoveredCellsCoordinates.length - 2];
+        newDiscoveredCellsCoordinates[newDiscoveredCellsCoordinates.length - 2];
 
       newDiscoveredCells.pop();
       newDiscoveredCells.pop();
@@ -134,13 +127,8 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Find the pair</h1>
         </header>
-        <Timer
-          timeStart={timeStart}
-          timeEnd={timeEnd}
-        />
-        <Header
-          winGame={winGame}
-        />
+        <Timer timeStart={timeStart} timeEnd={timeEnd} />
+        <Header winGame={winGame} />
         <Grid
           level={level}
           grid={grid}
