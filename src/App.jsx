@@ -15,6 +15,7 @@ import {
 } from './utils/config';
 import Grid from './Grid';
 import Header from './Header';
+import Timer from './Timer';
 import './App.css';
 
 class App extends Component {
@@ -32,6 +33,8 @@ class App extends Component {
       discoveredCells: [],
       discoveredCellsCoordinates: [],
       winGame: false,
+      timeStart: null,
+      timeEnd: null,
     };
 
     this.handleClickUpdatePressedGrid = this.handleClickUpdatePressedGrid.bind(this);
@@ -50,10 +53,18 @@ class App extends Component {
       const newDiscoveredCellsCoordinates = cloneArray(prevState.discoveredCellsCoordinates);
       const numberOfCells = height * width;
       let isWinGame = false;
+      let start;
+      let end;
 
       newUpdatePressedGrid[row][col] = true;
       newDiscoveredCells.push(grid[row][col]);
       newDiscoveredCellsCoordinates.push([row, col]);
+
+      if (prevState.timeStart === null) {
+        start = Date.now();
+      } else {
+        start = prevState.timeStart;
+      }
 
       for (let i = newDiscoveredCells.length - 1; i >= 0; i -= 2) {
         if (newDiscoveredCells.length > 1 &&
@@ -67,6 +78,9 @@ class App extends Component {
 
       if (newDiscoveredCells.length === numberOfCells) {
         isWinGame = true;
+        end = Date.now();
+      } else {
+        end = null;
       }
 
       return {
@@ -74,6 +88,8 @@ class App extends Component {
         discoveredCells: newDiscoveredCells,
         discoveredCellsCoordinates: newDiscoveredCellsCoordinates,
         winGame: isWinGame,
+        timeStart: start,
+        timeEnd: end,
       };
     });
   }
@@ -109,6 +125,8 @@ class App extends Component {
       grid,
       pressedGrid,
       winGame,
+      timeStart,
+      timeEnd,
     } = this.state;
 
     return (
@@ -118,6 +136,10 @@ class App extends Component {
         </header>
         <Header
           winGame={winGame}
+        />
+        <Timer
+          timeStart={timeStart}
+          timeEnd={timeEnd}
         />
         <Grid
           level={level}
