@@ -134,12 +134,12 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Find the pair</h1>
         </header>
-        <Header
-          winGame={winGame}
-        />
         <Timer
           timeStart={timeStart}
           timeEnd={timeEnd}
+        />
+        <Header
+          winGame={winGame}
         />
         <Grid
           level={level}

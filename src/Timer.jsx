@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Time from './Time';
 import './Timer.css';
 
 class Timer extends Component {
@@ -24,7 +25,11 @@ class Timer extends Component {
 
     return (
       <div className="Timer">
-        <h1 className="Timer--header">Timer: {time}</h1>
+        <h1 className="Timer--header">Timer:
+          <Time
+            time={time}
+          />
+        </h1>
       </div>
     );
   }
