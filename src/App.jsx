@@ -9,6 +9,7 @@ import Header from './Header';
 import Restart from './Restart';
 import Timer from './Timer';
 import Score from './Score';
+import Settings from './Settings';
 import './App.css';
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
     this.handleClickUpdatePressedGrid = this.handleClickUpdatePressedGrid.bind(this);
     this.removeWrongPairs = this.removeWrongPairs.bind(this);
     this.handleClickRestartgame = this.handleClickRestartgame.bind(this);
+    this.handleClickEditSettings = this.handleClickEditSettings.bind(this);
   }
 
   handleClickUpdatePressedGrid([row, col]) {
@@ -146,6 +148,21 @@ class App extends Component {
     });
   }
 
+  handleClickEditSettings(e) {
+    const level = parseInt(e.target.value, 10);
+
+    this.setState(() => {
+      const grid = getGrid(level);
+      const pressedGrid = getPressedGrid(level);
+
+      return {
+        level,
+        grid,
+        pressedGrid,
+      };
+    });
+  }
+
   render() {
     const {
       level,
@@ -172,6 +189,7 @@ class App extends Component {
           onClick={this.handleClickUpdatePressedGrid}
         />
         {bestScore ? <Score bestScore={bestScore} /> : ''}
+        <Settings onChange={this.handleClickEditSettings} />
       </div>
     );
   }
