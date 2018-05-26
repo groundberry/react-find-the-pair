@@ -7,6 +7,7 @@ import { getWidth, getHeight } from './utils/config';
 import Grid from './Grid';
 import Header from './Header';
 import Timer from './Timer';
+import Score from './Score';
 import './App.css';
 
 class App extends Component {
@@ -26,6 +27,8 @@ class App extends Component {
       winGame: false,
       timeStart: null,
       timeEnd: null,
+      scores: [],
+      bestScore: null,
     };
 
     this.handleClickUpdatePressedGrid = this.handleClickUpdatePressedGrid.bind(this);
@@ -43,9 +46,13 @@ class App extends Component {
       const newDiscoveredCells = cloneArray(prevState.discoveredCells);
       const newDiscoveredCellsCoordinates = cloneArray(prevState.discoveredCellsCoordinates);
       const numberOfCells = height * width;
+      const newScores = cloneArray(prevState.scores);
+
       let isWinGame = false;
       let start;
       let end;
+      let time;
+      let bestScore;
 
       newUpdatePressedGrid[row][col] = true;
       newDiscoveredCells.push(grid[row][col]);
@@ -72,6 +79,10 @@ class App extends Component {
       if (newDiscoveredCells.length === numberOfCells) {
         isWinGame = true;
         end = Date.now();
+        time = Math.floor((end - start) / 1000);
+        newScores.push(time);
+        const lowestTime = newScores.sort()[0];
+        bestScore = lowestTime;
       } else {
         end = null;
       }
@@ -83,6 +94,8 @@ class App extends Component {
         winGame: isWinGame,
         timeStart: start,
         timeEnd: end,
+        scores: newScores,
+        bestScore,
       };
     });
   }
@@ -120,6 +133,7 @@ class App extends Component {
       winGame,
       timeStart,
       timeEnd,
+      bestScore,
     } = this.state;
 
     return (
@@ -135,6 +149,7 @@ class App extends Component {
           pressedGrid={pressedGrid}
           onClick={this.handleClickUpdatePressedGrid}
         />
+        {bestScore ? <Score bestScore={bestScore} /> : ''}
       </div>
     );
   }
