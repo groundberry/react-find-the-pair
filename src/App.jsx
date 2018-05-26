@@ -6,6 +6,7 @@ import { cloneGrid, cloneArray } from './utils/array';
 import { getWidth, getHeight } from './utils/config';
 import Grid from './Grid';
 import Header from './Header';
+import Restart from './Restart';
 import Timer from './Timer';
 import Score from './Score';
 import './App.css';
@@ -33,6 +34,7 @@ class App extends Component {
 
     this.handleClickUpdatePressedGrid = this.handleClickUpdatePressedGrid.bind(this);
     this.removeWrongPairs = this.removeWrongPairs.bind(this);
+    this.handleClickRestartgame = this.handleClickRestartgame.bind(this);
   }
 
   handleClickUpdatePressedGrid([row, col]) {
@@ -125,6 +127,25 @@ class App extends Component {
     });
   }
 
+  handleClickRestartgame() {
+    const { level } = this.state;
+
+    this.setState(() => {
+      const grid = getGrid(level);
+      const pressedGrid = getPressedGrid(level);
+
+      return {
+        grid,
+        pressedGrid,
+        discoveredCells: [],
+        discoveredCellsCoordinates: [],
+        winGame: false,
+        timeStart: null,
+        timeEnd: null,
+      };
+    });
+  }
+
   render() {
     const {
       level,
@@ -141,6 +162,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Find the pair</h1>
         </header>
+        <Restart onClick={this.handleClickRestartgame} />
         <Timer timeStart={timeStart} timeEnd={timeEnd} />
         <Header winGame={winGame} />
         <Grid

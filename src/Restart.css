@@ -1,0 +1,14 @@
+.Restart {
+  background-color: #f0f0f0;
+  border-style: solid;
+  border-color: #c00;
+  border-radius: 3px;
+  border-width: medium;
+  font-size: 1em;
+  padding: 10px;
+}
+
+.Restart:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
