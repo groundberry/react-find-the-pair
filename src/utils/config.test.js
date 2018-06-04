@@ -12,13 +12,13 @@ describe('config', () => {
 
   describe('geWidth', () => {
     it('returns the width of the grid', () => {
-      expect(getWidth(level)).toBe(2);
+      expect(getWidth(level)).toBe(4);
     });
   });
 
   describe('getHeight', () => {
     it('returns the height of the grid', () => {
-      expect(getHeight(level)).toBe(2);
+      expect(getHeight(level)).toBe(4);
     });
   });
 });

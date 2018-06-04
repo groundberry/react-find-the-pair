@@ -4,21 +4,24 @@ import Header from './Header';
 
 describe('<Header />', () => {
   let wrapper;
-  let winGame;
+  let onChangeSpy;
+  let onClickSpy;
 
   beforeEach(() => {
-    winGame = true;
+    onChangeSpy = jest.fn();
+    onClickSpy = jest.fn();
 
     wrapper = shallow(<Header
-      winGame={winGame}
+      level={1}
+      timeStart={1001}
+      timeEnd={1200}
+      bestScore={34}
+      onChange={onChangeSpy}
+      onClick={onClickSpy}
     />);
   });
 
   it('renders a Header component', () => {
     expect(wrapper.find('.Header')).toHaveLength(1);
-  });
-
-  it('renders the text "You win!" when all the pairs have been found', () => {
-    expect(wrapper.find('.Header').text()).toEqual('You win!');
   });
 });

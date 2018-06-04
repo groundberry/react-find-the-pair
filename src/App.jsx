@@ -6,17 +6,13 @@ import { cloneGrid, cloneArray } from './utils/array';
 import { getWidth, getHeight } from './utils/config';
 import Grid from './Grid';
 import Header from './Header';
-import Restart from './Restart';
-import Timer from './Timer';
-import Score from './Score';
-import Settings from './Settings';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super();
 
-    const level = 2;
+    const level = 1;
     const grid = getGrid(level);
     const pressedGrid = getPressedGrid(level);
 
@@ -168,7 +164,6 @@ class App extends Component {
       level,
       grid,
       pressedGrid,
-      winGame,
       timeStart,
       timeEnd,
       bestScore,
@@ -179,17 +174,20 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Find the pair</h1>
         </header>
-        <Restart onClick={this.handleClickRestartgame} />
-        <Timer timeStart={timeStart} timeEnd={timeEnd} />
-        <Header winGame={winGame} />
+        <Header
+          level={level}
+          timeStart={timeStart}
+          timeEnd={timeEnd}
+          bestScore={bestScore}
+          onChange={this.handleClickEditSettings}
+          onClick={this.handleClickRestartgame}
+        />
         <Grid
           level={level}
           grid={grid}
           pressedGrid={pressedGrid}
           onClick={this.handleClickUpdatePressedGrid}
         />
-        {bestScore ? <Score bestScore={bestScore} /> : ''}
-        <Settings onChange={this.handleClickEditSettings} />
       </div>
     );
   }

@@ -11,7 +11,7 @@ class Timer extends Component {
   }
 
   render() {
-    const { timeStart, timeEnd } = this.props;
+    const { timeStart, timeEnd, bestScore } = this.props;
     const currentTime = Date.now();
     let time = 0;
 
@@ -29,6 +29,7 @@ class Timer extends Component {
           <Time
             time={time}
           />
+          {(time !== 0 && time === bestScore) ? ' Best score!' : ''}
         </h1>
       </div>
     );
@@ -38,11 +39,13 @@ class Timer extends Component {
 Timer.propTypes = {
   timeStart: PropTypes.number,
   timeEnd: PropTypes.number,
+  bestScore: PropTypes.number,
 };
 
 Timer.defaultProps = {
   timeStart: 0,
   timeEnd: PropTypes.number,
+  bestScore: PropTypes.number,
 };
 
 export default Timer;

@@ -1,15 +1,15 @@
 const configMap = {
   1: {
-    width: 2,
-    height: 2,
-  },
-  2: {
     width: 4,
     height: 4,
   },
-  3: {
+  2: {
     width: 6,
     height: 6,
+  },
+  3: {
+    width: 8,
+    height: 8,
   },
 };
 

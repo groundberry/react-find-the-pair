@@ -9,9 +9,8 @@ function Settings(props) {
 
   return (
     <form className="Settings">
-      <h3 className="Settings--header">Update settings:</h3>
       <label>
-        Change level:{' '}
+        Select level:{' '}
         <select value={level} onChange={onChange}>
           <option value={1}>Beginner</option>
           <option value={2}>Medium</option>
@@ -23,12 +22,8 @@ function Settings(props) {
 }
 
 Settings.propTypes = {
-  level: PropTypes.number,
+  level: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
-};
-
-Settings.defaultProps = {
-  level: 2,
 };
 
 export default Settings;
