@@ -1,9 +1,9 @@
 .Timer {
   color: #c00;
-  padding: 20px;
+  padding-bottom: 20px;
 }
 
 .Timer--header {
   display: inline;
-  font-size: 1.25em;
+  font-size: 1em;
 }

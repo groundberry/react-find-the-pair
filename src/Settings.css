@@ -1,12 +1,9 @@
 .Settings {
-  margin: 20px auto;
-}
-
-.Settings--header {
-  font-size: 1em;
+  padding-bottom: 20px;
 }
 
 .Settings label {
-  font-size: 0.8em;
+  color: #000;
+  font-size: 1em;
   text-align: left;
 }

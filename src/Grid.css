@@ -1,6 +1,4 @@
 .Grid {
-  justify-content: center;
   display: grid;
-  max-width: 50%;
-  margin: 0 auto;
+  justify-content: center;
 }
